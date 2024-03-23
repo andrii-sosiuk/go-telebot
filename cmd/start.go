@@ -6,15 +6,16 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/spf13/cobra"
-	telebot "gopkg.in/telebot.v3"
 	"log"
 	"os"
 	"time"
+
+	"github.com/spf13/cobra"
+	telebot "gopkg.in/telebot.v3"
 )
 
 var (
-	telegramToken = os.Getenv("TELEGRAM_TOKEN")
+	telegramToken = os.Getenv("TELE_TOKEN")
 )
 
 // startCmd represents the start command
@@ -38,7 +39,7 @@ to quickly create a Cobra application.`,
 		})
 
 		if err != nil {
-			log.Fatalf("Please check TELEGRAM_TOKEN env variable %s", err)
+			log.Fatalf("Please check TELE_TOKEN env variable %s", err)
 			return
 		}
 
@@ -47,9 +48,9 @@ to quickly create a Cobra application.`,
 			payload := m.Message().Text
 
 			switch payload {
-				case "hi":
-					err = m.Send(fmt.Sprintf("Hi !\n I am devops bot %s.", appVersion))
-					
+			case "hi":
+				err = m.Send(fmt.Sprintf("Hi !\n I am devops bot %s.", appVersion))
+
 			}
 
 			return err
