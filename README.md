@@ -14,7 +14,7 @@ go build -ldflags "-X main.appVersion=v0.0.3"
 
 ## Usage
 
-Set the environment variable named `TELEGRAM_TOKEN` with your Telegram token and run:
+Set the environment variable named `TELE_TOKEN` with your Telegram token and run:
 ```
 ./dron-go-telebot start
 ```
@@ -25,8 +25,8 @@ To find your Telegram bot token, follow these steps:
 2. Enter the `/token` command.
 3. You will see buttons with the bots you've created; select the one you need.
 
-To set the `TELEGRAM_TOKEN` environment variable in a secure manner that doesn't leave sensitive data in the system logs, use the following command:
+To set the `TELE_TOKEN` environment variable in a secure manner that doesn't leave sensitive data in the system logs, use the following command:
 ```
-read -s TELEGRAM_TOKEN
-export TELEGRAM_TOKEN
+read -s TELE_TOKEN
+export TELE_TOKEN
 ```
