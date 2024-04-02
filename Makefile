@@ -29,8 +29,9 @@ REVISION= $(shell git rev-parse --short HEAD)
 APP_NAME := $(GIT_REPO:.git=)
 APP_VERSION := $(VERSION)-$(REVISION)
 
-TARGET_ARCH=amd64
-TARGET_OS=linux
+REGISTRY := droneus
+TARGET_ARCH = amd64
+TARGET_OS = linux
 
 # TARGET_ARCH=amd64
 # TARGET_OS=windows
@@ -61,11 +62,19 @@ get:
 
 # Build
 build: format get
-	 $(SET) GOOS=$(TARGET_OS)$(AND) $(SET) GOARCH=$(TARGET_ARCH)$(AND) go build -ldflags "-X=$(APP_NAME)/cmd.appVersion=$(APP_VERSION)" .
+	 $(SET) GOOS=$(TARGET_OS)$(AND) $(SET) GOARCH=$(TARGET_ARCH)$(AND) go build -ldflags "-X=dron-go-telebot/cmd.appVersion=$(APP_VERSION)" .
+
+# Build container
+image:
+	docker build . -t $(REGISTRY)/$(APP_NAME):$(APP_VERSION)-$(TARGET_ARCH)
+
+# Push image
+push:
+	docker push $(REGISTRY)/$(APP_NAME):$(APP_VERSION)-$(TARGET_ARCH)
 
 # Clean up
 clean:
-	$(RM) $(APP_NAME)-* $(REDIRECT_DEV_NULL)
+	$(RM) dron-go-telebot* $(REDIRECT_DEV_NULL)
 
 # Example usage to build for different platforms:
 # make build OS=windows ARCH=amd64
