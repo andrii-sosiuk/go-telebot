@@ -62,7 +62,7 @@ get:
 
 # Build
 build: format get
-	 $(SET) GOOS=$(TARGET_OS)$(AND) $(SET) GOARCH=$(TARGET_ARCH)$(AND) go build -ldflags "-X=dron-go-telebot/cmd.appVersion=$(APP_VERSION)" .
+	 $(SET) CGO_ENABLED=0$(AND) $(SET) GOOS=$(TARGET_OS)$(AND) $(SET) GOARCH=$(TARGET_ARCH)$(AND) go build -v -o $(APP_NAME) -ldflags "-X=dron-go-telebot/cmd.appVersion=$(APP_VERSION)" .
 
 # Build container
 image:
@@ -74,7 +74,7 @@ push:
 
 # Clean up
 clean:
-	$(RM) dron-go-telebot* $(REDIRECT_DEV_NULL)
+	$(RM) $(APP_NAME)* $(REDIRECT_DEV_NULL)
 
 # Example usage to build for different platforms:
 # make build OS=windows ARCH=amd64
