@@ -1,51 +1,73 @@
 .PHONY: format lint test build clean
 
-# Project settings
-APP_NAME=myapp
-# Change these to the desired values
-OS := $(shell uname -s)
-ARCH=amd64
-
-
 ifeq ($(OS),Windows_NT)
-    RM = del /Q
+    HOST_OS := windows
+    RM = del /F /Q
     MKDIR = mkdir
+	REDIRECT_DEV_NULL = 2> NUL
+	SET= set
+    AND = &&
 else
+    UNAME_S := $(shell uname -s)
+    ifeq ($(UNAME_S),Linux)
+        HOST_OS := Linux
+    endif
+    ifeq ($(UNAME_S),Darwin)
+        HOST_OS := macOS
+    endif
     RM = rm -f
     MKDIR = mkdir -p
+	REDIRECT_DEV_NULL = > /dev/null 2>&1 
+	SET = export
+	AND = ;
+
 endif
 
+GIT_REPO = $(notdir $(shell git remote get-url origin))
+VERSION = $(shell git describe --tags --abbrev=0)
+REVISION= $(shell git rev-parse --short HEAD)
+APP_NAME := $(GIT_REPO:.git=)
+APP_VERSION := $(VERSION)-$(REVISION)
+
+TARGET_ARCH=amd64
+TARGET_OS=linux
+
+# TARGET_ARCH=amd64
+# TARGET_OS=windows
+
+verbose:
+	@echo $(OS)
+	@echo $(ARCH)
+	@echo $(APP_NAME)
+	@echo $(APP_VERSION)
 
 # Default command to run when no arguments are provided to make
-all: format lint test build
+all: lint test build
 
 # Format your code
 format:
-	go fmt ./...
+	gofmt -s -w ./
 
 # Lint your code
 lint:
-	# Replace with your preferred linter command, e.g., golangci-lint
-	golangci-lint run ./...
+	golint
 
 # Run tests
 test:
-	go test -v ./...
+	go test -v 
+# Get go modules
+get:
+	go get
 
-# Build your binary
-# Example: make build OS=linux ARCH=amd64
-# Default: make build (will use the above defaults for OS and ARCH)
-build:
-	GOOS=$(OS) GOARCH=$(ARCH) go build -ldflags "-X=dron-go-telebot/cmd.appVersion=v0.0.4" .
+# Build
+build: format get
+	 $(SET) GOOS=$(TARGET_OS)$(AND) $(SET) GOARCH=$(TARGET_ARCH)$(AND) go build -ldflags "-X=$(APP_NAME)/cmd.appVersion=$(APP_VERSION)" .
 
 # Clean up
 clean:
-	rm -f $(BINARY_NAME)-*
+	$(RM) $(APP_NAME)-* $(REDIRECT_DEV_NULL)
 
 # Example usage to build for different platforms:
 # make build OS=windows ARCH=amd64
 # make build OS=darwin ARCH=amd64
 # make build OS=linux ARCH=arm64
-
-
-
