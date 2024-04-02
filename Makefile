@@ -1,4 +1,4 @@
-.PHONY: format lint test build clean
+.PHONY: format lint test build image push clean
 
 
 REGISTRY := droneus
