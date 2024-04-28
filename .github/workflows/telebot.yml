@@ -8,6 +8,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: make build 
+      - name: Build the Docker image
+        uses: actions/checkout@v4
+        run: make build 
+
+      - name: ghcr login
+        uses: docker/login-action@3
+        with:
+          username: ${{ secrets.REGISTRY_NAME }}
+          password: ${{ secrets.REGISTRY_TOKEN }}
+
