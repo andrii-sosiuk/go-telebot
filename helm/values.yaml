@@ -4,10 +4,11 @@
 
 replicaCount: 1
 image:
-  repository: ghcr.io/andrii-sosiuk
-  name: go-telebot
+  registry: ghcr.io
+  repository: andrii-sosiuk/go-telebot
   tag: v3.0.0-746189d
   arch: amd64
+  os: linux
   pullPolicy: IfNotPresent
 secret:
   name: kbot
