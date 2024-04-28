@@ -6,7 +6,7 @@ replicaCount: 1
 image:
   repository: ghcr.io/andrii-sosiuk
   name: go-telebot
-  tag: 3.0.0-ed98e22
+  tag: v3.0.0-746189d
   arch: amd64
   pullPolicy: IfNotPresent
 secret:
