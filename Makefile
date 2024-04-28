@@ -1,7 +1,7 @@
 .PHONY: format lint test build image push clean
 
 
-REGISTRY := ghcr.io
+REGISTRY := ghcr.io/andrii-sosiuk
 TARGET_ARCH = amd64
 TARGET_OS = linux
 
