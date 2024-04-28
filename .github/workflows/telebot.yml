@@ -5,11 +5,15 @@ on:
     branches: [ "develop" ]
 
 jobs:
-  build:
+  ci:
     runs-on: ubuntu-latest
     steps:
       - name: Build the Docker image
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Make build
         run: make build 
 
       - name: ghcr login
