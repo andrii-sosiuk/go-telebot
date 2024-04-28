@@ -1,7 +1,7 @@
 .PHONY: format lint test build image push clean
 
 
-REGISTRY := ghcr.io/andrii-sosiuki/go-telebot
+REGISTRY := ghcr.io/andrii-sosiuki
 TARGET_ARCH = amd64
 TARGET_OS = linux
 
