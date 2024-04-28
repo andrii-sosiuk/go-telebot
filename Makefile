@@ -72,17 +72,17 @@ build: format get
 
 # Build container
 image:
-	docker build . -t $(REGISTRY)/$(APP_NAME):$(APP_VERSION)-$(TARGET_OS)-$(TARGET_ARCH)
+	docker build . -t $(REGISTRY)/$(APP_NAME):v$(APP_VERSION)-$(TARGET_OS)-$(TARGET_ARCH)
 
 # Push image
 push:
-	docker push $(REGISTRY)/$(APP_NAME):$(APP_VERSION)-$(TARGET_OS)-$(TARGET_ARCH)
+	docker push $(REGISTRY)/$(APP_NAME):v$(APP_VERSION)-$(TARGET_OS)-$(TARGET_ARCH)
 
 # Clean up
 clean:
 ifeq ($(IMAGE_EXIST),)
 else
-	docker rmi $(REGISTRY)/$(APP_NAME):$(APP_VERSION)-$(TARGET_OS)-$(TARGET_ARCH) $(REDIRECT_DEV_NULL)
+	docker rmi $(REGISTRY)/$(APP_NAME):v$(APP_VERSION)-$(TARGET_OS)-$(TARGET_ARCH) $(REDIRECT_DEV_NULL)
 endif
 	$(RM) $(APP_NAME)* $(REDIRECT_DEV_NULL)
 
