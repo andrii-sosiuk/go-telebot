@@ -1,7 +1,7 @@
 .PHONY: format lint test build image push clean
 
 
-REGISTRY := droneus
+REGISTRY := ghcr.io
 TARGET_ARCH = amd64
 TARGET_OS = linux
 

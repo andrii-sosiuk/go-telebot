@@ -22,7 +22,7 @@ jobs:
           registry: ghcr.io
           username: ${{ secrets.REGISTRY_NAME }}
           password: ${{ secrets.REGISTRY_TOKEN }}
-      - name: Byul&Push
+      - name: Build&Push
         env:
           APP: "kbot"
           REGISTRY:  ${{ secrets.REGISTRY_NAME }}
