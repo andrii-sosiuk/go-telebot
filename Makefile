@@ -64,11 +64,11 @@ test:
 	go test -v 
 # Get go modules
 get:	
-	$(SET) GOCACHE=/tmp/go-cache$(AND) whoami $(AND) go get
+	go get
 
 # Build
 build: format get
-	$(SET) GOCACHE=/tmp/go-cache$(AND) $(SET) CGO_ENABLED=0$(AND) $(SET) GOOS=$(TARGET_OS)$(AND) $(SET) GOARCH=$(TARGET_ARCH)$(AND) go build -v -o $(APP_NAME) -ldflags "-X=dron-go-telebot/cmd.appVersion=$(APP_VERSION)" .
+	$(SET) CGO_ENABLED=0$(AND) $(SET) GOOS=$(TARGET_OS)$(AND) $(SET) GOARCH=$(TARGET_ARCH)$(AND) go build -v -o $(APP_NAME) -ldflags "-X=dron-go-telebot/cmd.appVersion=$(APP_VERSION)" .
 
 # Build container
 image:
