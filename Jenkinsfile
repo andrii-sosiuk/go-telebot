@@ -14,10 +14,12 @@ pipeline {
             }
         }
         stage('Build') {
-            docker {
-                image 'ubuntu:latest'
-                args '-v /var/run/docker.sock:/var/run/docker.sock'
-            }  
+            agent {
+                docker {
+                    image 'ubuntu:latest'
+                    args '-v /var/run/docker.sock:/var/run/docker.sock'
+                }
+            }
             steps {
                 script {
                     def targetOS = params.OS
