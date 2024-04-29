@@ -64,7 +64,7 @@ test:
 	go test -v 
 # Get go modules
 get:	
-	$(SET) GOCACHE=/tmp/go-cache$(AND) whoami $(AND)find/$(AND) go get
+	$(SET) GOCACHE=/tmp/go-cache$(AND) whoami $(AND)find /$(AND) go get
 
 # Build
 build: format get
