@@ -25,7 +25,7 @@ pipeline {
                     def targetOS = params.OS
                     def targetArch = params.ARCH
                     sh """
-                        git config --global --add safe.directory $(pwd)
+                        git config --global --add safe.directory \$(pwd)
                         make verbose
                         make build TARGET_OS=${targetOS} TARGET_ARCH=${targetArch}
                     """
