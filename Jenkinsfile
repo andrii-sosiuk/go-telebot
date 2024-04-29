@@ -16,7 +16,7 @@ pipeline {
         stage('Build') {
             agent {
                 docker {
-                    image 'ubuntu-latest'
+                    image 'golang'
                     args '-v /var/run/docker.sock:/var/run/docker.sock'
                 }
             }
