@@ -25,6 +25,7 @@ pipeline {
                     def targetOS = params.OS
                     def targetArch = params.ARCH
                     sh """
+                        make verbose
                         make build TARGET_OS=${targetOS} TARGET_ARCH=${targetArch}
                     """
                 }
