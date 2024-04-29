@@ -16,15 +16,19 @@ pipeline {
         stage('Build') {
             agent {
                 docker {
-                    image 'golang'
-                    args '-v /var/run/docker.sock:/var/run/docker.sock -v ./:/app'
+                    image 'ubuntu'
+                    args '-v /var/run/docker.sock:/var/run/docker.sock'
                 }
             }
             steps {
                 script {
                     def targetOS = params.OS
                     def targetArch = params.ARCH
-                    sh "make build TARGET_OS=${targetOS} TARGET_ARCH=${targetArch}"
+                    sh """
+                        apt update
+                        apt install make
+                        make build TARGET_OS=${targetOS} TARGET_ARCH=${targetArch}
+                    """
                 }
             }
         }
