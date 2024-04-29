@@ -17,8 +17,7 @@ pipeline {
             agent {
                 docker {
                     image 'quay.io/projectquay/golang:1.20'
-                    args '-v /var/run/docker.sock:/var/run/docker.sock'
-                    user 'root'
+                    args '-u root:root -v /var/run/docker.sock:/var/run/docker.sock'
                 }
             }
             steps {
