@@ -1,5 +1,8 @@
 pipeline {
-    agent built-in 
+    agent {
+        label 'built-in'
+    }
+ built-in 
     parameters {
         choice(name: 'OS', choices: ['linux', 'darwin', 'windows', 'all'], description: 'Pick OS', defaultValue: 'linux')
         choice(name: 'ARCH', choices: ['amd64', 'arm64', 'armv7'], description: 'Pick Architecture', defaultValue: 'amd64')
