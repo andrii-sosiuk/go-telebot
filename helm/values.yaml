@@ -6,7 +6,7 @@ replicaCount: 1
 image:
   registry: ghcr.io
   repository: andrii-sosiuk/go-telebot
-  tag: v3.0.0-ae7b503
+  tag: v3.0.0-25b046f
   arch: amd64
   os: linux
   pullPolicy: IfNotPresent
