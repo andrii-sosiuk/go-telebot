@@ -45,6 +45,8 @@ jobs:
     - uses: mikefarah/yq@master
       with:
         cmd: yq -i '.image.tag=strenv(VERSION)' helm/values.yaml
+        cmd: yq -i '.version=strenv(VERSION)' helm/Chart.yaml
+        cmd: yq -i '.version |= (split(".") | .[-1] |= ((. tag = "!!int") + 1) | join("."))' helm/Chart.yaml
 
     - run: |
         git config user.name github-actions
