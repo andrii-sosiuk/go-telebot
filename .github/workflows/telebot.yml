@@ -28,7 +28,6 @@ jobs:
           APP: "kbot"
           REGISTRY:  ${{ secrets.REGISTRY_NAME }}
         run: make image push
-  #
 
   cd:
     name: Delivery
