@@ -30,7 +30,6 @@ jobs:
         run: make image push
 
 #
-#
   cd:
     name: Delivery
     needs: ci
