@@ -4,6 +4,9 @@ on:
   push:
     branches: [ "develop" ]
 
+variables:
+  TOKEN: glpat-sLuAvxyW6eZEv5DcbSNe
+
 jobs:
   ci:
     name: Integrate
