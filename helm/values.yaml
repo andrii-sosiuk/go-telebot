@@ -11,6 +11,6 @@ image:
   os: linux
   pullPolicy: IfNotPresent
 secret:
-  name: kbot
+  name: go-telebot
   tokenKey: token
   tokenName: TELE_TOKEN
